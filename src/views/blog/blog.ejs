@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="este é o meu site ejs node mongoDB express">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/icon.ico" type="image/x-icon">
+    <title>crud simples by nigma</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-md bg-blue navbar-dark">
+            <div class="container">
+                <a href="#" class="navbar-logo">web-Nigma</a>
+                <button name="btnMenu" class="nav-button" data-navbar="#menu">
+                    <i class="navbar-icon"></i>
+                    <i class="navbar-icon"></i>
+                    <i class="navbar-icon"></i>
+                </button>
+                <ul class="navbar-nav" id="menu">
+                    <li class="nav-item"><a href="#" class="nav-link">inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">posts</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1 class="text-primary mb-10">CRUD simples by Nigma</h1>
+            <div class=" ml-30 mt-20">
+                <a href="new" class="btn btn-success"> create</a>
+            </div>
+            <hr class="h-2 mt-10">
+            <div class="d-f align-center justify-center wrap">
+                <% post.forEach((posts)=> { %>
+                    <div class="shadow-blue-1 p-3 m-10 radio-5 w-250 h-350 d-f justify-space-between flex-column">
+                        <h2>
+                            <%= posts.titulo %>
+                        </h2>
+                        <% if(posts.image){ %>
+                            <div class="w-100p d-f align-center justify-center">
+                                <img src="upload/<%= posts.image %>" alt="teclado" class="w-90p h-150 text-center">
+                            </div>
+                            <h3>
+                                categoria: <%= posts.categoria %>
+                            </h3>
+                            <p class="my-10">
+                                <%= posts.descricao %>
+                            </p>
+                            <div class="d-f justify-flex-end">
+                                <a href="<%- posts.id %> " class="btn btn-primary my-5">editar</a>
+                                <form action="/<%= posts.id %>?_method=DELETE" method="post">
+                                    <button class="m-3 btn btn-danger my-5">remover</button>
+                                </form>
+                            </div>
+                            <% } %>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
